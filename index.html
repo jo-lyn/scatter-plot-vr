@@ -17,7 +17,7 @@
     <a-assets>
         <a-mixin id="cube"
                  geometry="primitive: box; height: 1; width: 1; depth: 1"
-                 material="color: #EF2D5E; transparent: true; opacity: 0.2"></a-mixin>
+                 material="color: #EF2D5E; transparent: true; opacity: 0"></a-mixin>
         <a-mixin id="cube-collided"
                  material="color: #F2E646; transparent: true; opacity: 0.2"></a-mixin>
         <a-mixin id="cube-grabbed"
@@ -68,8 +68,16 @@
 
     <a-entity hand-controls="right" aabb-collider="objects: .cube;" grab></a-entity>
 
-    <a-entity class="cube" mixin="cube" position="0 1 -2" spin zoom>
-        <a-scatterplot position="-0.5 -0.5 -0.5" src="url(datasets/sample.json)" x="field1" y="field2" z="field3" val="field4" ></a-scatterplot>
+    <a-entity class="cube" mixin="cube" position="0 1 -2" scale="2.2 2.2 2.2" spin zoom>
+        <a-scatterplot
+                position="-0.5 -0.5 -0.5"
+                src="url(datasets/sample.json)"
+                x="age" y="val" z="year" val="demog"
+                fillval="1, 8"
+                relationship="none"
+                pointsize="1"
+                colorpreset='jet'
+                title="Singaporean population 1960-2017 by Age, Gender and Race" ></a-scatterplot>
     </a-entity>
 
     <a-camera></a-camera>
