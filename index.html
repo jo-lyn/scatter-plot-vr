@@ -9,8 +9,16 @@
     <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.1/d3.min.js"></script>
     <script src="https://cdn.rawgit.com/zcanter/aframe-scatterplot/master/dist/a-scatterplot.min.js"></script>
+<<<<<<< HEAD
     <script src="components/custom-cube.js"></script>
     <script src="components/custom-button.js"></script>
+=======
+    <script src="components/aabb-collider.js"></script>
+    <script src="components/grab.js"></script>
+    <script src="components/spin.js"></script>
+    <script src="components/zoom.js"></script>
+    <script src="components/toggler.js"></script>
+>>>>>>> add toggler component
 </head>
 <body>
 <a-scene fog="color: #bc483e; near: 0; far: 65;">
@@ -76,11 +84,11 @@
                 position="-0.5 -0.5 -0.5"
                 src="url(datasets/sample.json)"
                 x="age" y="val" z="year" val="demog"
-                fillval="1, 8"
                 relationship="none"
                 pointsize="1"
                 colorpreset='jet'
-                title="Singaporean population 1960-2017 by Age, Gender and Race" ></a-scatterplot>
+                title="Singaporean population 1960-2017 by Age, Gender and Race"
+                toggler></a-scatterplot>
     </a-entity>
 
     <a-entity light="type: point; color: #ffffff; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
@@ -89,5 +97,10 @@
 
     <a-sky color="#d9d9d9" radius="10"></a-sky>
 </a-scene>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="index.js"></script>
 </body>
 </html>
