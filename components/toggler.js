@@ -7,7 +7,7 @@ AFRAME.registerComponent('toggler', {
     toggle: function(value) {
         var HIDDEN_POSITION = {'x': 10000, 'y': 10000, 'z': 10000};
 
-        // update toggled values
+        // update toggled value
         this.data.isVisible[value-1] = !this.data.isVisible[value-1];
         this.data.toggled = value;
 
