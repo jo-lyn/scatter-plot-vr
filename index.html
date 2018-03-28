@@ -9,68 +9,69 @@
     <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.1/d3.min.js"></script>
     <script src="https://cdn.rawgit.com/zcanter/aframe-scatterplot/master/dist/a-scatterplot.min.js"></script>
-    <script src="components/aabb-collider.js"></script>
-    <script src="components/grab.js"></script>
-    <script src="components/spin.js"></script>
-    <script src="components/zoom.js"></script>
+    <script src="components/custom-cube.js"></script>
+    <script src="components/custom-button.js"></script>
 </head>
 <body>
 <a-scene fog="color: #bc483e; near: 0; far: 65;">
     <a-assets>
-        <a-mixin id="cube"
-                 geometry="primitive: box; height: 1; width: 1; depth: 1"
-                 material="color: #EF2D5E; transparent: true; opacity: 0"></a-mixin>
-        <a-mixin id="cube-collided"
-                 material="color: #F2E646; transparent: true; opacity: 0.2"></a-mixin>
-        <a-mixin id="cube-grabbed"
-                 material="color: #F2E646; transparent: true; opacity: 0.2"></a-mixin>
+        <a-mixin id="controller"
+                 super-hands
+                 static-body="shape: sphere; sphereRadius: 0.02;"
+                 sphere-collider="objects: .button, .cube;"></a-mixin>
 
         <a-mixin id="button"
                  geometry="primitive: box; height: 1; width: 1; depth: 2"
-                 material="color: #EF2D5E; transparent: true; opacity: 1"></a-mixin>
-        <a-mixin id="button-collided"
-                 material="color: #F2E646; transparent: true; opacity: 0.8"></a-mixin>
-        <a-mixin id="button-grabbed"
-                 material="color: #F2E646; transparent: true; opacity: 0.8"></a-mixin>
+                 material="color: #EF2D5E; transparent: true; opacity: 1"
+                 hoverable></a-mixin>
+
+        <a-mixin id="cube"
+                 geometry="primitive: box; height: 1; width: 1; depth: 1"
+                 material="color: #EF2D5E; transparent: true; opacity: 0"
+                 hoverable
+                 grabbable="startButtons: gripdown; endButtons: gripup"
+                 stretchable="startButtons: triggerdown; endButtons: triggerup"></a-mixin>
     </a-assets>
+
     <!-- Hands -->
-    <!--<a-entity hand-controls="left" aabb-collider="objects: .cube, .button;" grab>-->
-        <!--<a-entity position="0 0 0.3"-->
-                  <!--scale="0.01 0.01 0.005"-->
-                  <!--rotation="0 0 -90"-->
-                  <!--obj-model="obj: url(assets/Plasmacannon/plasma cannon.obj)"-->
-                  <!--material="color: #666666; transparent: true; opacity: 0.8">-->
-            <!--<a-entity class="button" mixin="button"-->
-                      <!--position="-4.3 3.7 -28.4"-->
-                      <!--rotation="0 0 52"-->
-                      <!--scale="2 2 4"></a-entity>-->
-            <!--<a-entity class="button" mixin="button"-->
+    <a-entity hand-controls="left" mixin="controller">
+        <a-entity position="0 0 0.3"
+                  scale="0.01 0.01 0.005"
+                  rotation="0 0 -90"
+                  obj-model="obj: url(assets/Plasmacannon/plasma cannon.obj)"
+                  material="color: #666666; transparent: true; opacity: 0.8">
+            <a-entity class="button"
+                      mixin="button"
+                      position="-4.3 3.7 -28.4"
+                      rotation="0 0 52"
+                      scale="2 2 4"
+                      custom-button></a-entity>
+            <!--<a-entity class="button"-->
+                      <!--mixin="button"-->
                       <!--position="-4.3 -3.7 -28.4"-->
                       <!--rotation="0 0 -52"-->
-                      <!--scale="2 2 4"></a-entity>-->
-            <!--<a-entity geometry="primitive: box; height: 8; width: 0.1; depth: 20"-->
-                      <!--material="color: #99ddff; transparent: true; opacity: 0.7"-->
-                      <!--position="-3.2 1.8 -8.8"-->
-                      <!--rotation="0 0 -30">-->
-                <!--<a-entity text="value: .> Hello World"-->
-                          <!--position="-0.25 -0.15 -16"-->
-                          <!--rotation="180 90 0"-->
-                          <!--scale="50 25 25"></a-entity>-->
-            <!--</a-entity>-->
-        <!--</a-entity>-->
-    <!--</a-entity>-->
-
-    <!--<a-entity hand-controls="right" aabb-collider="objects: .cube;" grab></a-entity>-->
-
-
-    <a-entity id="lhand" hand-controls="left" super-hands
-              sphere-collider="objects: .cube">
+                      <!--scale="2 2 4"-->
+                      <!--custom-button></a-entity>-->
+            <a-entity geometry="primitive: box; height: 8; width: 0.1; depth: 20"
+                      material="color: #99ddff; transparent: true; opacity: 0.7"
+                      position="-3.2 1.8 -8.8"
+                      rotation="0 0 -30">
+                <a-entity id="screen"
+                          text="value: .> Hello World"
+                          position="-0.25 -0.15 -16"
+                          rotation="180 90 0"
+                          scale="50 25 25"></a-entity>
+            </a-entity>
+        </a-entity>
     </a-entity>
-    <a-entity id="rhand" hand-controls="right" super-hands
-              sphere-collider="objects: .cube">
-    </a-entity>
+    <a-entity hand-controls="right" mixin="controller"></a-entity>
 
-    <a-entity class="cube" mixin="cube" position="0 1 -1" scale="1 1 1" hoverable grabbable stretchable draggable>
+    <a-entity id="plot"
+              class="cube"
+              position="0 1 -1"
+              scale="1 1 1"
+              mixin="cube"
+              custom-cube>
         <a-scatterplot
                 position="-0.5 -0.5 -0.5"
                 src="url(datasets/sample.json)"
@@ -81,8 +82,6 @@
                 colorpreset='jet'
                 title="Singaporean population 1960-2017 by Age, Gender and Race" ></a-scatterplot>
     </a-entity>
-
-    <a-camera></a-camera>
 
     <a-entity light="type: point; color: #ffffff; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
     <a-entity light="type: point; color: #ffffff; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
