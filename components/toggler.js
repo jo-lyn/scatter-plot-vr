@@ -6,7 +6,7 @@ AFRAME.registerComponent('toggler', {
 
     /**
      * Toggles visibility of points with the given demographic value.
-     * @param {number} demographic value of the range [1,8].
+     * @param {number} value - demographic value of the range [1,8].
      */
     toggle: function(value) {
         var HIDDEN_POSITION = {'x': 10000, 'y': 10000, 'z': 10000};
