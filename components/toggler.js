@@ -1,7 +1,6 @@
 AFRAME.registerComponent('toggler', {
     schema: {
-        isVisible: {default: [true, true, true, true, true, true, true, true]},
-        toToggle: {default: '1'}
+        isVisible: {default: [true, true, true, true, true, true, true, true]}
     },
 
     init: function() {
@@ -17,14 +16,31 @@ AFRAME.registerComponent('toggler', {
     },
 
     onKeydown: function (evt) {
-        if (evt.keyCode == 69) { // traverse values
-            var toToggle = this.data.toToggle % 8 + 1;
-
-            this.data.toToggle = toToggle;
-            console.log(toToggle);
-        }
-        if (evt.keyCode == 81) { // toggle on or off
-            this.toggle(this.data.toToggle);
+        switch (evt.keyCode) {
+            case 49:
+                this.toggle(1);
+                break;
+            case 50:
+                this.toggle(2);
+                break;
+            case 51:
+                this.toggle(3);
+                break;
+            case 52:
+                this.toggle(4);
+                break;
+            case 53:
+                this.toggle(5);
+                break;
+            case 54:
+                this.toggle(6);
+                break;
+            case 55:
+                this.toggle(7);
+                break;
+            case 56:
+                this.toggle(8);
+                break;
         }
     },
 
@@ -35,7 +51,7 @@ AFRAME.registerComponent('toggler', {
     toggle: function(value) {
         var HIDDEN_POSITION = {'x': 10000, 'y': 10000, 'z': 10000};
 
-        // update toggled value
+        // update visibility
         this.data.isVisible[value - 1] = !this.data.isVisible[value - 1];
 
         // update vertices
