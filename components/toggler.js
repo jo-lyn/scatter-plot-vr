@@ -1,7 +1,31 @@
 AFRAME.registerComponent('toggler', {
     schema: {
         isVisible: {default: [true, true, true, true, true, true, true, true]},
-        toggled: {default: '-1'}
+        toToggle: {default: '1'}
+    },
+
+    init: function() {
+        this.onKeydown = this.onKeydown.bind(this);
+    },
+
+    play: function() {
+        window.addEventListener('keydown', this.onKeydown);
+    },
+
+    pause: function() {
+        window.addEventListener('keydown', this.onKeydown);
+    },
+
+    onKeydown: function (evt) {
+        if (evt.keyCode == 69) { // traverse values
+            var toToggle = this.data.toToggle % 8 + 1;
+
+            this.data.toToggle = toToggle;
+            console.log(toToggle);
+        }
+        if (evt.keyCode == 81) { // toggle on or off
+            this.toggle(this.data.toToggle);
+        }
     },
 
     /**
@@ -13,7 +37,6 @@ AFRAME.registerComponent('toggler', {
 
         // update toggled value
         this.data.isVisible[value - 1] = !this.data.isVisible[value - 1];
-        this.data.toggled = value;
 
         // update vertices
         for (i = 0; i < vertices.length; i++) {
