@@ -80,6 +80,13 @@
                  stretchable="startButtons: triggerdown; endButtons: triggerup"></a-mixin>
     </a-assets>
 
+    <!--Hands-->
+    <a-entity id="p-control" progressive-controls="objects: .cube; maxLevel: point;">
+        <a-entity id="lhand" oculus-touch-controls="hand: left" class="left-controller" custom-lhand></a-entity>
+        <a-entity id="rhand" oculus-touch-controls="hand: right" class="right-controller"></a-entity>
+        <a-camera id="camera"></a-camera>
+    </a-entity>
+
     <!--Watch-->
     <a-entity id="watch" visible="false">
         <a-entity position="0 0 0.3"

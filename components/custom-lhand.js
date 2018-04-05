@@ -9,7 +9,6 @@ AFRAME.registerComponent('custom-lhand', {
     init: function () {
         this.PTR_STATE = 'PTR';
         this.onToggle = this.onToggle.bind(this);
-        this.createHandControl();
     },
 
     play: function () {
