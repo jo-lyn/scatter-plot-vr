@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <title>Tracked Controls</title>
     <meta name="description" content="Tracked Controls – A-Frame">
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/aframevr/aframe/12d8721/dist/aframe-master.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.4/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.1/d3.min.js"></script>
     <script src="https://cdn.rawgit.com/zcanter/aframe-scatterplot/master/dist/a-scatterplot.min.js"></script>
     <script src="components/custom-cube.js"></script>
     <script src="components/custom-button.js"></script>
+    <script src="components/custom-lhand.js"></script>
 </head>
 <body>
 <a-scene fog="color: #bc483e; near: 0; far: 65;">
@@ -33,38 +34,40 @@
                  stretchable="startButtons: triggerdown; endButtons: triggerup"></a-mixin>
     </a-assets>
 
-    <!-- Hands -->
-    <a-entity hand-controls="left" mixin="controller">
-        <a-entity position="0 0 0.3"
-                  scale="0.01 0.01 0.005"
-                  rotation="0 0 -90"
-                  obj-model="obj: url(assets/Plasmacannon/plasma cannon.obj)"
-                  material="color: #666666; transparent: true; opacity: 0.8">
-            <a-entity class="button"
-                      mixin="button"
-                      position="-4.3 3.7 -28.4"
-                      rotation="0 0 52"
-                      scale="2 2 4"
-                      custom-button></a-entity>
-            <!--<a-entity class="button"-->
-                      <!--mixin="button"-->
-                      <!--position="-4.3 -3.7 -28.4"-->
-                      <!--rotation="0 0 -52"-->
-                      <!--scale="2 2 4"-->
-                      <!--custom-button></a-entity>-->
-            <a-entity geometry="primitive: box; height: 8; width: 0.1; depth: 20"
-                      material="color: #99ddff; transparent: true; opacity: 0.7"
-                      position="-3.2 1.8 -8.8"
-                      rotation="0 0 -30">
-                <a-entity id="screen"
-                          text="value: .> Hello World"
-                          position="-0.25 -0.15 -16"
-                          rotation="180 90 0"
-                          scale="50 25 25"></a-entity>
-            </a-entity>
+    <!--Hands-->
+    <a-entity id="p-control" progressive-controls="objects: .cube; maxLevel: touch; controllerModel: false">
+        <a-entity hand-controls="left" oculus-touch-controls="hand: left" mixin="controller" custom-lhand>
+            <!--<a-entity position="0 0 0.3"-->
+                      <!--scale="0.01 0.01 0.005"-->
+                      <!--rotation="0 0 -90"-->
+                      <!--obj-model="obj: url(assets/Plasmacannon/plasma cannon.obj)"-->
+                      <!--material="color: #666666; transparent: true; opacity: 0.8">-->
+                <!--<a-entity class="button"-->
+                          <!--mixin="button"-->
+                          <!--position="-4.3 3.7 -28.4"-->
+                          <!--rotation="0 0 52"-->
+                          <!--scale="2 2 4"-->
+                          <!--custom-button></a-entity>-->
+                <!--&lt;!&ndash;<a-entity class="button"&ndash;&gt;-->
+                <!--&lt;!&ndash;mixin="button"&ndash;&gt;-->
+                <!--&lt;!&ndash;position="-4.3 -3.7 -28.4"&ndash;&gt;-->
+                <!--&lt;!&ndash;rotation="0 0 -52"&ndash;&gt;-->
+                <!--&lt;!&ndash;scale="2 2 4"&ndash;&gt;-->
+                <!--&lt;!&ndash;custom-button></a-entity>&ndash;&gt;-->
+                <!--<a-entity geometry="primitive: box; height: 8; width: 0.1; depth: 20"-->
+                          <!--material="color: #99ddff; transparent: true; opacity: 0.7"-->
+                          <!--position="-3.2 1.8 -8.8"-->
+                          <!--rotation="0 0 -30">-->
+                    <!--<a-entity id="screen"-->
+                              <!--text="value: .> Hello World"-->
+                              <!--position="-0.25 -0.15 -16"-->
+                              <!--rotation="180 90 0"-->
+                              <!--scale="50 25 25"></a-entity>-->
+                <!--</a-entity>-->
+            <!--</a-entity>-->
         </a-entity>
+        <a-entity hand-controls="right" oculus-touch-controls="hand: left" mixin="controller"></a-entity>
     </a-entity>
-    <a-entity hand-controls="right" mixin="controller"></a-entity>
 
     <a-entity id="plot"
               class="cube"
