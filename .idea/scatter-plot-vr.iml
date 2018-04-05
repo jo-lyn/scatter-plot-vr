@@ -13,5 +13,7 @@
     <orderEntry type="library" name="super-hands" level="application" />
     <orderEntry type="library" name="d3" level="application" />
     <orderEntry type="library" name="a-scatterplot" level="application" />
+    <orderEntry type="library" name="aframe-master" level="application" />
+    <orderEntry type="library" name="jquery-3.3.1" level="application" />
   </component>
 </module>
