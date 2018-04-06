@@ -83,7 +83,7 @@
     <!--Hands-->
     <a-entity id="p-control" progressive-controls="objects: .cube; maxLevel: point;">
         <a-entity id="lhand" oculus-touch-controls="hand: left" class="left-controller" custom-lhand></a-entity>
-        <a-entity id="rhand" oculus-touch-controls="hand: right" class="right-controller"></a-entity>
+        <a-entity id="rhand" oculus-touch-controls="hand: right" class="right-controller" point-controller></a-entity>
         <a-camera id="camera"></a-camera>
     </a-entity>
 
@@ -148,6 +148,7 @@
                 pointsize="1"
                 colorpreset='jet'
                 title="Singaporean population 1960-2017 by Age, Gender and Race"
+                showvalueonhover="true"
                 toggler point-hover></a-scatterplot>
     </a-entity>
 
