@@ -27,47 +27,47 @@ AFRAME.registerComponent('custom-button', {
     },
 
     onButtondown: function (evt) {
-        this.el.setAttribute('material', "color: #EF2D5E; transparent: true; opacity: 0.8");
+        this.el.setAttribute('material', "color: #FFFFFF;");
         this.el.addState(this.ACTIVE_STATE);
         // discrete action handler
         switch (this.el.getAttribute('id')) {
             case "lgd1":
                 this.toggle(1);
-                document.querySelector("#msg").setAttribute("value", ".> Male Malays");
+                this.setMessage("Male Malays");
                 break;
             case "lgd2":
                 this.toggle(2);
-                document.querySelector("#msg").setAttribute("value", ".> Female Malays");
+                this.setMessage("Female Malays");
                 break;
             case "lgd3":
                 this.toggle(3);
-                document.querySelector("#msg").setAttribute("value", ".> Male Chinese");
+                this.setMessage("Male Chinese");
                 break;
             case "lgd4":
                 this.toggle(4);
-                document.querySelector("#msg").setAttribute("value", ".> Female Chinese");
+                this.setMessage("Female Chinese");
                 break;
             case "lgd5":
                 this.toggle(5);
-                document.querySelector("#msg").setAttribute("value", ".> Male Indians");
+                this.setMessage("Male Indians");
                 break;
             case "lgd6":
                 this.toggle(6);
-                document.querySelector("#msg").setAttribute("value", ".> Female Indians");
+                this.setMessage("Female Indians");
                 break;
             case "lgd7":
                 this.toggle(7);
-                document.querySelector("#msg").setAttribute("value", ".> Male Others");
+                this.setMessage("Male Others");
                 break;
             case "lgd8":
                 this.toggle(8);
-                document.querySelector("#msg").setAttribute("value", ".> Female Others");
+                this.setMessage("Female Others");
                 break;
         }
     },
 
     onButtonup: function (evt) {
-        this.el.setAttribute('material', "color: #EF2D5E; transparent: true; opacity: 1");
+        this.el.setAttribute('material', "color: #EF2D5E;");
         this.el.removeState(this.ACTIVE_STATE);
     },
 
@@ -123,5 +123,10 @@ AFRAME.registerComponent('custom-button', {
             }
         }
         geometry.verticesNeedUpdate = true;
+    },
+
+    setMessage: function(selected) {
+        document.querySelector("#msg").setAttribute("value", ".> " + selected);
+        document.querySelector("#screen").setAttribute("text", "value: .> " + selected);
     }
 });
